@@ -1,5 +1,4 @@
 # helps with databases
-from audioop import add
 from flask_sqlalchemy import SQLAlchemy #main program to handle data to pass between app and database
 from flask_migrate import Migrate # part of what actually uploads data tables
 import uuid # universally unique identifier. string of numbers for primary keys for things 
@@ -11,7 +10,6 @@ from flask_marshmallow import Marshmallow # helps with moving data back and fort
 import secrets 
 
 # set variables for class instantiation
-
 login_manager = LoginManager()
 ma = Marshmallow()
 db = SQLAlchemy()
@@ -19,7 +17,6 @@ db = SQLAlchemy()
 @login_manager.user_loader 
 def load_user(user_id):
     return User.query.get(user_id)
-
 # this whole class is for users to create accounts and login
 class User(db.Model, UserMixin): # where we tell the tables what we want them to become
     id = db.Column(db.String, primary_key = True) 
@@ -52,7 +49,6 @@ class User(db.Model, UserMixin): # where we tell the tables what we want them to
 
     def __repr__(self): # using it to give us a confirmation that what we wanted to happen happen.
         return f'User {self.email} has been added to the database'
-
 # This whole class is for our contacts that our users actually want to store
 class Contact(db.Model):
     id = db.Column(db.String, primary_key = True)
